@@ -505,10 +505,16 @@ input:checked + .slider:before {
 }
 
 @media (max-width: 480px) {
-  .date-input {
-    max-width: 95%; /* 90 % от ширины родителя */
+  .form-group .date-input {
+    max-width: 340px;
     width: 100%;
-    min-width: 280px; /* гарантия минимальной ширины */
+    min-width: 340px;
+  }
+}
+@media (max-width: 360px) {
+  .form-group .date-input {
+    max-width: 280px;
+    min-width: 240px;
   }
 }
 
