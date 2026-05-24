@@ -661,10 +661,7 @@ const submitForm = async () => {
     })
 
     // Формирование текста согласия
-    const consentStatus = isConsentGiven.value ? 'Да' : 'Нет'
-    const consentDetails = isConsentGiven.value
-      ? 'Пользователь дал согласие на обработку персональных данных в соответствии с политикой конфиденциальности.'
-      : 'Пользователь не дал согласия на обработку персональных данных.'
+    const consentDetails = `Пользователь ${isConsentGiven.value ? 'дал' : 'НЕ дал'} согласие на обработку персональных данных${isConsentGiven.value ? ' в соответствии с политикой конфиденциальности' : ''}.`
 
     // Подготовка данных для EmailJS
     const templateParams = {
@@ -681,7 +678,6 @@ const submitForm = async () => {
       diagnosis: personalData.value.diagnosis,
       address: personalData.value.address,
       poolVisit: personalData.value.poolVisit,
-      consentStatus: consentStatus,
       consentDetails: consentDetails,
       submissionDateTime: submissionDateTime,
       answers: formatAnswersForEmail(selectedAnswers.value),
