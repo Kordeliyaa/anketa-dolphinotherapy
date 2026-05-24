@@ -500,6 +500,18 @@ input:checked + .slider:before {
   }
 }
 
+.date-input {
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .date-input {
+    max-width: 95%; /* 90 % от ширины родителя */
+    width: 100%;
+    min-width: 280px; /* гарантия минимальной ширины */
+  }
+}
+
 /* Плавные переходы для всех элементов */
 .questionnaire,
 .answer-btn,

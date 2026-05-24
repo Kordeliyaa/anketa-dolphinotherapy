@@ -103,7 +103,12 @@
       </div>
       <div class="form-group">
         <label><span class="required-asterisk">*</span> Дата рождения:</label>
-        <input v-model="personalData.birthDate" @input="saveToStorage" type="date" />
+        <input
+          v-model="personalData.birthDate"
+          @input="saveToStorage"
+          type="date"
+          class="date-input"
+        />
       </div>
       <div class="form-group">
         <label>Инвалидность:</label>
