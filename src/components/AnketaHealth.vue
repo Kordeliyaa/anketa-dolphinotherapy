@@ -334,7 +334,7 @@ const isValidEmail = (email: string): boolean => {
   return emailRegex.test(email)
 }
 
-// Валидация номера телефона
+// Валидация телефона
 const isValidPhone = (phone: string): boolean => {
   const cleaned = phone.replace(/\D/g, '')
   return cleaned.length === 11 || cleaned.length === 12
@@ -342,18 +342,15 @@ const isValidPhone = (phone: string): boolean => {
 
 // Функция мгновенной валидации при вводе
 const validateOnInput = () => {
-  // Очистка предыдущих ошибок для телефона и почты
   validationErrors.value.phone = ''
   validationErrors.value.email = ''
 
-  // Валидация телефона
   if (personalData.value.phone.trim()) {
     if (!isValidPhone(personalData.value.phone)) {
       validationErrors.value.phone = 'Некорректный формат номера телефона'
     }
   }
 
-  // Валидация email
   if (personalData.value.email.trim()) {
     if (!isValidEmail(personalData.value.email)) {
       validationErrors.value.email = 'Некорректный формат электронной почты'
@@ -562,7 +559,6 @@ const formatAnswersForEmail = (answers: { [key: number]: string | string[] | nul
 const submitForm = async () => {
   // Блокировка повторных отправок, если уже идёт процесс
   if (isSubmitting.value) return
-  // Установка флага отправки
   isSubmitting.value = true
 
   // Сброс всех ошибок валидации перед новой проверкой
@@ -641,6 +637,11 @@ const submitForm = async () => {
       errorMessages.push(
         `Пожалуйста, ответьте на все вопросы. Не отвечены №: ${unansweredQuestions.join(', ')}`,
       )
+    }
+
+    if (Object.keys(validationErrors.value).length > 0) {
+      error.value = 'Проверьте корректность заполнения персональных данных.'
+      return
     }
 
     // Если есть ошибки, прерывается отправка
